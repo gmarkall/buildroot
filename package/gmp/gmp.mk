@@ -12,5 +12,9 @@ GMP_LICENSE = LGPLv3+
 GMP_LICENSE_FILES = COPYING.LESSERv3
 GMP_DEPENDENCIES = host-m4
 
+ifeq ($(BR2_TOOLCHAIN_BUILDROOT_STATIC),y)
+HOST_GMP_CONF_OPTS = --disable-shared
+endif
+
 $(eval $(autotools-package))
 $(eval $(host-autotools-package))
