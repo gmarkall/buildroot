@@ -65,7 +65,7 @@ choice
 		select BR2_GCC_SUPPORTS_GRAPHITE
 
 	config BR2_GCC_VERSION_4_8_ARC
-		bool "gcc 4.8-arc"
+		bool "gcc 4.8-arc-ezchip"
 		# Only supported architecture
 		depends on BR2_arc
 		select BR2_GCC_NEEDS_MPC
@@ -90,7 +90,7 @@ config BR2_GCC_VERSION
 	default "4.7.4"     if BR2_GCC_VERSION_4_7_X
 	default "4.8.4"     if BR2_GCC_VERSION_4_8_X
 	default "4.9.2"     if BR2_GCC_VERSION_4_9_X
-	default "arc-2014.12" if BR2_GCC_VERSION_4_8_ARC
+	default "arc-2015.06-ezchip" if BR2_GCC_VERSION_4_8_ARC
 
 config BR2_EXTRA_GCC_CONFIG_OPTIONS
 	string "Additional gcc options"
