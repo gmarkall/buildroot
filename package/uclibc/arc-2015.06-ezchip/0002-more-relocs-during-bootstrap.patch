@@ -1,0 +1,15 @@
+diff -rup uClibc-nps-orig/ldso/ldso/arc/dl-startup.h uClibc-nps-devel/ldso/ldso/arc/dl-startup.h
+--- uClibc-nps-orig/ldso/ldso/arc/dl-startup.h	2015-11-03 22:33:21.000000000 +0000
++++ uClibc-nps-devel/ldso/ldso/arc/dl-startup.h	2016-07-27 17:17:13.211859260 +0100
+@@ -78,6 +78,10 @@ do {									\
+ 	int type = ELF32_R_TYPE((RELP)->r_info);			\
+ 	if (likely(type == R_ARC_RELATIVE))				\
+ 		*REL += (unsigned long) LOAD;				\
++	else if (type == R_ARC_JMP_SLOT)                                \
++		*REL = SYMBOL;						\
++	else if (type == R_ARC_NONE)                                    \
++		/* Nothing.  */;					\
+ 	else								\
+ 		_dl_exit(1);						\
+ }while(0)
+Only in uClibc-nps-devel/ldso/ldso/arc: dl-startup.h~
