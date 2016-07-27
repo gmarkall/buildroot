@@ -1,0 +1,26 @@
+commit 6de898d87692f2afb9a9ac5ef26c7d86e4dd3b65
+Author: Cupertino Miranda <cmiranda@synopsys.com>
+Date:   Fri May 20 12:26:27 2016 +0530
+
+    ldso/ARC: fix DT_RELACOUNT handling
+    
+    With new binutils supporting DT_RELACOUNT, ldso was crashing as it was
+    parsing relocs incorrectly.
+    
+    Apparently that code ran for first time and was never tested.
+    
+    Signed-off-by: Vineet Gupta <vgupta@synopsys.com>
+
+diff --git a/ldso/ldso/arc/dl-sysdep.h b/ldso/ldso/arc/dl-sysdep.h
+index b6bda9d..caece99 100644
+--- a/ldso/ldso/arc/dl-sysdep.h
++++ b/ldso/ldso/arc/dl-sysdep.h
+@@ -166,7 +166,7 @@ static __always_inline void
+ elf_machine_relative (Elf32_Addr load_off, const Elf32_Addr rel_addr,
+ 		      Elf32_Word relative_count)
+ {
+-	 Elf32_Rel * rpnt = (void *) rel_addr;
++	 Elf32_Rela * rpnt = (void *) rel_addr;
+ 	--rpnt;
+ 	do {
+ 		Elf32_Addr *const reloc_addr = (void *) (load_off + (++rpnt)->r_offset);
