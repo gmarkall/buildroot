@@ -72,7 +72,8 @@ HOST_BINUTILS_CONF_OPTS = \
 	--with-sysroot=$(STAGING_DIR) \
 	--enable-poison-system-directories \
 	$(BINUTILS_DISABLE_GDB_CONF_OPTS) \
-	$(BINUTILS_EXTRA_CONFIG_OPTIONS)
+	$(BINUTILS_EXTRA_CONFIG_OPTIONS) \
+	CFLAGS="$(HOST_CFLAGS) -m32"
 
 # We just want libbfd, libiberty and libopcodes,
 # not the full-blown binutils in staging

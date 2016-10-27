@@ -93,7 +93,8 @@ HOST_GCC_COMMON_CONF_OPTS = \
 	--with-gmp=$(HOST_DIR)/usr \
 	--with-mpfr=$(HOST_DIR)/usr \
 	--with-pkgversion="Buildroot $(BR2_VERSION_FULL)" \
-	--with-bugurl="http://bugs.buildroot.net/"
+	--with-bugurl="http://bugs.buildroot.net/" \
+	CFLAGS="$(HOST_CFLAGS) -m32"
 
 # Don't build documentation. It takes up extra space / build time,
 # and sometimes needs specific makeinfo versions to work
